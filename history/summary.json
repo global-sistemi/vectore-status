@@ -10,11 +10,11 @@
     "uptimeWeek": "100.00%",
     "uptimeMonth": "100.00%",
     "uptimeYear": "100.00%",
-    "time": 530,
-    "timeDay": 530,
-    "timeWeek": 530,
-    "timeMonth": 530,
-    "timeYear": 530,
+    "time": 522,
+    "timeDay": 522,
+    "timeWeek": 522,
+    "timeMonth": 522,
+    "timeYear": 522,
     "dailyMinutesDown": {}
   },
   {
@@ -28,31 +28,11 @@
     "uptimeWeek": "100.00%",
     "uptimeMonth": "100.00%",
     "uptimeYear": "100.00%",
-    "time": 1765,
-    "timeDay": 1765,
-    "timeWeek": 1765,
-    "timeMonth": 1765,
-    "timeYear": 1765,
+    "time": 1677,
+    "timeDay": 1677,
+    "timeWeek": 1677,
+    "timeMonth": 1677,
+    "timeYear": 1677,
     "dailyMinutesDown": {}
-  },
-  {
-    "name": "Keycloak Identity Provider",
-    "url": "https://identity.gruppoglobalsistemi.dev/realms/global/.well-known/openid-configuration",
-    "icon": "https://icons.duckduckgo.com/ip3/identity.gruppoglobalsistemi.dev.ico",
-    "slug": "keycloak-identity-provider",
-    "status": "down",
-    "uptime": "6.17%",
-    "uptimeDay": "6.17%",
-    "uptimeWeek": "6.17%",
-    "uptimeMonth": "6.17%",
-    "uptimeYear": "6.17%",
-    "time": 0,
-    "timeDay": 0,
-    "timeWeek": 0,
-    "timeMonth": 0,
-    "timeYear": 0,
-    "dailyMinutesDown": {
-      "2026-04-27": 0
-    }
   }
 ]
