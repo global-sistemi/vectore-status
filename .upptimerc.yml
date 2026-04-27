@@ -1,36 +1,87 @@
-# Change these first
-owner: upptime # Your GitHub organization or username, where this repository lives
-repo: upptime # The name of this repository
+# Upptime configuration — Vectore Status Page
+# Docs: https://upptime.js.org/docs/configuration
 
+owner: global-sistemi
+repo: vectore-status
+
+# Personal Access Token con scope repo + workflow
+# Configurato come secret GH_PAT del repository
+user-agent: vectore-status-bot
+
+# Endpoint monitorati (fase 1 — solo produzione *.vectore.cloud + Keycloak)
 sites:
-  - name: Google
-    url: https://www.google.com
-  - name: Wikipedia
-    url: https://en.wikipedia.org
-  - name: Hacker News
-    url: https://news.ycombinator.com
-  - name: Test Broken Site
-    url: https://thissitedoesnotexist.koj.co
-  - name: IPv6 test
-    url: forwardemail.net
-    port: 80
-    check: "tcp-ping"
-    ipv6: true
+  - name: API Gateway
+    url: https://api.vectore.cloud/health
+    expectedStatusCodes:
+      - 200
 
+  - name: Admin SPA
+    url: https://admin.vectore.cloud
+    expectedStatusCodes:
+      - 200
+      - 301
+      - 302
+
+  - name: Keycloak Identity Provider
+    url: https://identity.gruppoglobalsistemi.dev/realms/global/.well-known/openid-configuration
+    expectedStatusCodes:
+      - 200
+
+# Status page (GitHub Pages)
 status-website:
-  # Add your custom domain name, or remove the `cname` line if you don't have a domain
-  # Uncomment the `baseUrl` line if you don't have a custom domain and add your repo name there
-  cname: demo.upptime.js.org
-  # baseUrl: /your-repo-name
-  logoUrl: https://raw.githubusercontent.com/upptime/upptime.js.org/master/static/img/icon.svg
-  name: Upptime
-  introTitle: "**Upptime** is the open-source uptime monitor and status page, powered entirely by GitHub."
-  introMessage: This is a sample status page which uses **real-time** data from our [GitHub repository](https://github.com/upptime/upptime). No server required — just GitHub Actions, Issues, and Pages. [**Get your own for free**](https://github.com/upptime/upptime)
+  # Lasciare commentato finché la pagina non gira correttamente su <org>.github.io/vectore-status.
+  # Quando il CNAME su Route 53 è pronto, decommentare:
+  # cname: status.vectore.cloud
+  name: Vectore Status
+  introTitle: "Stato dei servizi Vectore"
+  introMessage: |
+    Pagina di stato pubblica della piattaforma Vectore di Global Sistemi.
+    I dati di uptime sono raccolti tramite probe HTTPS ogni 5 minuti da
+    GitHub Actions (infrastruttura indipendente da Vectore).
   navbar:
     - title: Status
       href: /
     - title: GitHub
-      href: https://github.com/$OWNER/$REPO
+      href: https://github.com/global-sistemi/vectore-status
 
-# Upptime also supports notifications, assigning issues, and more
-# See https://upptime.js.org/docs/configuration
+# Notifiche disattivate in fase 1.
+# Upptime crea comunque issue automatiche su down/recovery: usale per
+# tarare retry/timeout prima di abilitare canali esterni (Slack/email/PA).
+# notifications:
+#   - type: slack
+#     channel: "#vectore-status"
+#     url: "$SLACK_WEBHOOK_URL"
+
+# Cadenza dei workflow (default Upptime — qui esplicitati per chiarezza)
+workflowSchedule:
+  graphs: "0 0 * * *"        # grafici response time: 1/giorno
+  responseTime: "0 23 * * *" # ricalcolo response time: 1/giorno
+  staticSite: "0 1 * * *"    # rebuild status page: 1/giorno
+  summary: "0 0 * * *"       # rigenerazione README: 1/giorno
+  updates: "0 3 * * *"       # auto-update Upptime: 1/giorno
+  updateTemplate: "0 0 * * 0" # auto-update template: 1/settimana
+
+# Soglie per classificare lo stato
+status:
+  # >= 90% uptime su finestra → "up"
+  daysInHistogram: 90
+  # Soglia P95 in ms oltre la quale un servizio "up" viene marcato come "degraded"
+  upMaxResponseTime: 1500
+  # Oltre questo è "down" anche se HTTP 200
+  downMaxResponseTime: 5000
+
+# Lingua interfaccia status page
+i18n:
+  # Default UI in italiano per coerenza con utenti/PA
+  activeIncidents: Incidenti attivi
+  allSystemsOperational: Tutti i sistemi sono operativi
+  ago: fa
+  and: e
+  degradedPerformance: Prestazioni degradate
+  partialOutage: Disservizio parziale
+  majorOutage: Disservizio grave
+  responseTime: Tempo di risposta
+  uptime: Disponibilità
+  hours: ore
+  minutes: minuti
+  days: giorni
