@@ -24,9 +24,7 @@ sites:
 
 # Status page (GitHub Pages)
 status-website:
-  # Lasciare commentato finché la pagina non gira correttamente su <org>.github.io/vectore-status.
-  # Quando il CNAME su Route 53 è pronto, decommentare:
-  # cname: status.vectore.cloud
+  cname: status.vectore.it
   name: Vectore Status
   introTitle: "Stato dei servizi Vectore"
   introMessage: |
