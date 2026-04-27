@@ -22,11 +22,6 @@ sites:
       - 301
       - 302
 
-  - name: Keycloak Identity Provider
-    url: https://identity.gruppoglobalsistemi.dev/realms/global/.well-known/openid-configuration
-    expectedStatusCodes:
-      - 200
-
 # Status page (GitHub Pages)
 status-website:
   # Lasciare commentato finché la pagina non gira correttamente su <org>.github.io/vectore-status.
