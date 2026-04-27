@@ -34,8 +34,8 @@ status-website:
   navbar:
     - title: Status
       href: /
-    - title: GitHub
-      href: https://github.com/global-sistemi/vectore-status
+    - title: Vectore
+      href: https://vectore.it
 
 # Notifiche disattivate in fase 1.
 # Upptime crea comunque issue automatiche su down/recovery: usale per
